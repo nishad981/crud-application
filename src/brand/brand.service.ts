@@ -22,9 +22,16 @@ export class BrandService {
     return await this.brandRepository.find();
   }
 
-  readOne(id: number): Promise<Brand> {
-    //return this.brandRepository.findOne(id);
-    return this.brandRepository.findOneOrFail(id);
+  async readOne(id: number): Promise<Brand> {
+    try {
+      const search = await this.brandRepository.findOne(id);
+      if (!search) {
+        throw `Id ${id} does not exit man!`;
+      }
+      return search;
+    } catch (e) {
+      return e;
+    }
   }
 
   async update(id: number, brandDto: BrandDto): Promise<Brand> {

@@ -6,13 +6,13 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   const config = new DocumentBuilder()
-    .setTitle('Crud-application')
-    .setDescription('CRUD Documentation')
+    .setTitle('Natural Disaster Tracker')
+    .setDescription('Backend Documentation')
     .setVersion('2.0')
-    .addTag('Nishad-CRUD')
+    .addTag('Weather data')
     .build();
   const document = SwaggerModule.createDocument(app, config);
-  SwaggerModule.setup('api', app, document);
+  SwaggerModule.setup('weather', app, document);
 
   await app.listen(3000);
 }
